@@ -1,9 +1,7 @@
-# book_club_app# Book Club App (Flutter + Riverpod)
+## Book Club App (Flutter + Riverpod)
 
 This project is a simple Flutter application demonstrating clean architecture and state management using Riverpod.  
 It allows users to view, sort, and explore a small collection of books. The goal is to show how to implement Riverpod correctly with a clear separation of data, logic, and UI.
-
----
 
 ## Overview
 
@@ -15,36 +13,6 @@ Users can:
 
 All app state (books, loading status, sorting preference, and selected book) is managed through **Riverpod** using the `StateNotifier` pattern.
 
----
-
-## Architecture
-
-The app follows a simple three-layer structure:
-
-lib/
-│
-├── main.dart → Entry point; sets up ProviderScope and app theme
-│
-├── models/
-│ └── book.dart → Defines the Book model
-│
-├── services/
-│ └── book_service.dart → Mock data service simulating fetch and seed calls
-│
-├── providers/
-│ └── book_providers.dart → Contains Riverpod providers and BooksNotifier
-│
-├── screens/
-│ ├── home_page.dart → Main list of books with sorting and refresh
-│ └── book_detail_page.dart→ Displays details for a selected book
-│
-└── widgets/
-├── book_card_widget.dart→ Card layout for a book item
-└── book_image_widget.dart→ Displays image or placeholder initials
-
-
----
-
 ## Riverpod Implementation
 
 ### 1. `bookServiceProvider`
@@ -55,6 +23,7 @@ This service is responsible for seeding and fetching books.
 final bookServiceProvider = Provider<BookService>((ref) => BookService());
 
 2. booksNotifierProvider
+
 A StateNotifierProvider exposing the BooksNotifier and its immutable BooksState.
 final booksNotifierProvider =
     StateNotifierProvider<BooksNotifier, BooksState>((ref) {
@@ -62,6 +31,7 @@ final booksNotifierProvider =
 });
 
 3. BooksState
+
 A plain data class holding all state fields:
 books: current list of books
 isLoading: whether data is being fetched
@@ -69,6 +39,7 @@ sortBy: current sorting method
 selectedBook: book currently being viewed
 
 4. BooksNotifier
+
 A StateNotifier<BooksState> that manages all logic:
 init() loads data and seeds initial books
 _sortList() sorts by author or title
