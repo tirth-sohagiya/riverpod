@@ -12,46 +12,53 @@ class BookDetailPage extends ConsumerWidget {
     final state = ref.watch(booksNotifierProvider);
     final notifier = ref.read(booksNotifierProvider.notifier);
 
-    final book = state.books.firstWhere((b) => b.id == bookId, orElse: () => state.selectedBook ?? (state.books.isNotEmpty ? state.books[0] : throw Exception('Book not found')));
+    final book = state.books.firstWhere(
+      (b) => b.id == bookId,
+      orElse: () => state.selectedBook ??
+          (state.books.isNotEmpty
+              ? state.books.first
+              : throw Exception('Book not found')),
+    );
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Book Detail'),
+        title: Text(book.title),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             notifier.backToList();
-            Navigator.of(context).pop();
+            Navigator.pop(context);
           },
         ),
       ),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(child: BookImageWidget(book: book, size: 140)),
-            const SizedBox(height: 16),
-            Text(book.title, style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 8),
-            Text('by ${book.author}', style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 16),
-            Text(book.description),
-            const Spacer(),
-            Row(
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    notifier.backToList();
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(Icons.list),
-                  label: const Text('Back to List'),
-                ),
-              ],
-            ),
-          ],
-        ),
+        children: [
+          Center(child: BookImageWidget(book: book, size: 150)),
+          const SizedBox(height: 16),
+          Text(
+            book.title,
+            style: Theme.of(context).textTheme.headlineSmall,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'by ${book.author}',
+            style: Theme.of(context).textTheme.titleMedium,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Text(book.description, textAlign: TextAlign.justify),
+          const SizedBox(height: 24),
+          ElevatedButton.icon(
+            onPressed: () {
+              notifier.backToList();
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.list),
+            label: const Text('Back to List'),
+          ),
+        ],
       ),
     );
   }

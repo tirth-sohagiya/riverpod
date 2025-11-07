@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/tirthsohagiya/Softwares/flutter/packages/flutter_tools/gradle/src/main/scripts/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/tirthsohagiya/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/tirthsohagiya/SCU/Courses/riverpod/build/.cxx/debug/c5h46681/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/tirthsohagiya/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/tirthsohagiya/SCU/Courses/riverpod/build/.cxx/debug/c5h46681/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

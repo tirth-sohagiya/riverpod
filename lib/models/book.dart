@@ -3,7 +3,7 @@ class Book {
   final String title;
   final String author;
   final String description;
-  final String imageUrl;
+  final String imageUrl; // local asset or network URL
 
   const Book({
     required this.id,
@@ -13,6 +13,7 @@ class Book {
     this.imageUrl = '',
   });
 
+  // Create a modified copy of the book without changing the original instance
   Book copyWith({
     String? id,
     String? title,
